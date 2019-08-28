@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movieListAdapter"
+            type="com.yehonatan.latestmovies.adapters.MovieListAdapter.ViewHolder" />
+        <variable
+            name="movie"
+            type="com.yehonatan.latestmovies.dataModel.Movie" />
+        <variable
+            name="position"
+            type="int" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        android:onClick="@{_ -> movieListAdapter.onClickItem(movie, position)}"
+        android:layoutDirection="ltr">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingEnd="20dp"
+                app:loadImageCircle="@{movie.posterPath}"/>
+
+            <TextView
+                android:id="@+id/tvTilte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie"
+                tools:text="tvTilte"
+                android:text="@{movie.title}"/>
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvTilte"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie"
+                android:layout_marginTop="10dp"
+                tools:text="tvRating"
+                android:text="@{String.valueOf(movie.voteAverage)}"/>
+            <TextView
+                android:id="@+id/tvReleaseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvRating"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie"
+                android:layout_marginTop="10dp"
+                tools:text="tvReleaseYear"
+                android:text="@{movie.releaseDate}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

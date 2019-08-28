@@ -33,7 +33,7 @@ class SplashFragment : Fragment() {
 
     private fun fetchMoviesSuccess(moviesData: MoviesData?) {
         val bundle = Bundle()
-        moviesData?.let { bundle.putParcelableArrayList(Consts.KEY_BUNDLE_LIST_MOVIES, it.results) }
+        moviesData?.let { bundle.putParcelableArrayList(Consts.KEY_BUNDLE_LIST_MOVIES, it.movies) }
         NavHostFragment.findNavController(this)
             .navigate(R.id.action_splashFragment_to_movieListFragment, bundle)
     }

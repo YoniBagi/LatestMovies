@@ -10,7 +10,7 @@ data class MoviesData(
     @SerializedName("page")
     var page: Int,
     @SerializedName("results")
-    var results: ArrayList<Result>,
+    var movies: ArrayList<Movie>,
     @SerializedName("total_pages")
     var totalPages: Int,
     @SerializedName("total_results")

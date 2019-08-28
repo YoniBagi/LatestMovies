@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_movieListFragment"
-            app:destination="@id/moviesListFragment" />
+            app:destination="@id/moviesListFragment"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_graph"
+            app:enterAnim="@anim/blink"
+            app:popEnterAnim="@anim/blink"/>
     </fragment>
     <fragment
         android:id="@+id/moviesListFragment"
@@ -21,10 +25,14 @@
         tools:layout="@layout/fragment_movies_list" >
         <action
             android:id="@+id/action_moviesListFragment_to_detailsMovieFragment"
-            app:destination="@id/detailsMovieFragment" />
+            app:destination="@id/detailsMovieFragment"
+            app:enterAnim="@anim/bounce"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_moviesListFragment_to_favouriteFragment"
-            app:destination="@id/favouriteFragment" />
+            app:destination="@id/favouriteFragment"
+            app:popEnterAnim="@anim/blink"/>
     </fragment>
     <fragment
         android:id="@+id/detailsMovieFragment"

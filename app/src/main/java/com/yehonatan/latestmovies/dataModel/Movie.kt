@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Result(
+data class Movie(
     @SerializedName("adult")
     var adult: Boolean,
     @SerializedName("backdrop_path")
