@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.yehonatan.latestmovies.SplashFragment"
+        android:name="com.yehonatan.latestmovies.fragments.splashFragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/moviesListFragment"
-        android:name="com.yehonatan.latestmovies.MoviesListFragment"
+        android:name="com.yehonatan.latestmovies.fragments.moviesListFragment.MoviesListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movies_list" >
         <action
@@ -28,12 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailsMovieFragment"
-        android:name="com.yehonatan.latestmovies.DetailsMovieFragment"
+        android:name="com.yehonatan.latestmovies.fragments.detailsMovieFragment.DetailsMovieFragment"
         android:label="fragment_details_movie"
         tools:layout="@layout/fragment_details_movie" />
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.yehonatan.latestmovies.FavouriteFragment"
+        android:name="com.yehonatan.latestmovies.fragments.favouriteFragment.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
 </navigation>

@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -22,7 +23,11 @@ android {
         }
     }
     dataBinding {
-        enabled = true
+        enabled true
+    }
+
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -55,4 +60,5 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }
