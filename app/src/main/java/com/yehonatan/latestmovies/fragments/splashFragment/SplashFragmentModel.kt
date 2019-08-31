@@ -16,7 +16,7 @@ class SplashFragmentModel private constructor(){
             return field
         }
 
-        fun fetchData(){
+        private fun fetchData(){
             val call : Call<MoviesData> = RetrofitManager.instanceServiceApi.getMoviesData()
             call.enqueue(object :Callback<MoviesData>{
                 override fun onFailure(call: Call<MoviesData>, t: Throwable) {

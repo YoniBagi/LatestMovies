@@ -44,9 +44,9 @@
 
         </com.google.android.material.appbar.AppBarLayout>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovieList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:adapter="@{movieListFragment.getAdapter()}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

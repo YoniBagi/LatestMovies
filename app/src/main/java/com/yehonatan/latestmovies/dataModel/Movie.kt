@@ -2,17 +2,24 @@ package com.yehonatan.latestmovies.dataModel
 
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.yehonatan.latestmovies.converters.ConverterListInt
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+@Entity(tableName = "movie_table")
 data class Movie(
     @SerializedName("adult")
     var adult: Boolean,
     @SerializedName("backdrop_path")
     var backdropPath: String,
+    /*@TypeConverters(ConverterListInt::class)
     @SerializedName("genre_ids")
-    var genreIds: List<Int>,
+    var genreIds: List<Int>,*/
+    @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     var id: Int,
     @SerializedName("original_language")

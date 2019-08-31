@@ -8,7 +8,7 @@ import com.yehonatan.latestmovies.R
 import com.yehonatan.latestmovies.dataModel.Movie
 import com.yehonatan.latestmovies.databinding.ItemFavouriteStaggeredGridViewBinding
 
-class FavouriteAdapter(private val favouriteList: ArrayList<Movie>) :
+class FavouriteAdapter(private val favouriteList: List<Movie>) :
     RecyclerView.Adapter<FavouriteAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<ItemFavouriteStaggeredGridViewBinding>(
