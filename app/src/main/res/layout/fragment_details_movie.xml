@@ -14,110 +14,140 @@
             type="com.yehonatan.latestmovies.dataModel.Movie" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DetailsMovieFragment"
-        android:layoutDirection="ltr">
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvTitleScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@{movie.title}"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_collapseMode="pin"
+            android:layout_gravity="center|top"
+            tools:text="movie name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleScreen">
 
-            <TextView
-                android:id="@+id/tvTitleScreen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:text="@{movie.title}"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/ivDetailsMovie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                app:loadImage="@{movie.posterPath}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitleScreen" />
-
-            <TextView
-                android:id="@+id/tvDetailsTitle"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@{movie.overview}"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:theme="@style/Theme.Design.NoActionBar"
+                android:background="@android:color/transparent" >
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <ImageView
+                        android:id="@+id/ivDetailsMovie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        app:layout_collapseMode="parallax"
+                        android:layout_gravity="center|bottom"
+                        app:loadImage="@{movie.posterPath}"
+                        tools:src="@mipmap/ic_launcher"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/ivDetailsMovie"
-                tools:text="tvTilte"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                tools:context=".DetailsMovieFragment"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/rating"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/tvDetailsRating"
-                app:layout_constraintStart_toStartOf="@+id/tvDetailsRating" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvDetailsRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:text="@{String.valueOf(movie.voteAverage)}"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/tvDetailsReleaseYear"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailsTitle"
-                tools:text="tvRating" />
+                    <TextView
+                        android:id="@+id/tvDetailsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@{movie.overview}"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="tvTilte" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/rating"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/tvDetailsRating"
+                        app:layout_constraintStart_toStartOf="@+id/tvDetailsRating" />
+
+                    <TextView
+                        android:id="@+id/tvDetailsRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:text="@{String.valueOf(movie.voteAverage)}"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDetailsReleaseYear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDetailsTitle"
+                        tools:text="tvRating" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/releaseDate"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/tvDetailsReleaseYear"
-                app:layout_constraintStart_toStartOf="@+id/tvDetailsReleaseYear" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/releaseDate"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/tvDetailsReleaseYear"
+                        app:layout_constraintStart_toStartOf="@+id/tvDetailsReleaseYear" />
 
-            <TextView
-                android:id="@+id/tvDetailsReleaseYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{movie.releaseDate}"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvDetailsRating"
-                app:layout_constraintTop_toTopOf="@+id/tvDetailsRating"
-                tools:text="tvReleaseYear" />
+                    <TextView
+                        android:id="@+id/tvDetailsReleaseYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{movie.releaseDate}"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvDetailsRating"
+                        app:layout_constraintTop_toTopOf="@+id/tvDetailsRating"
+                        tools:text="tvReleaseYear" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="10dp"
-                android:isIndicator="true"
-                android:numStars="10"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailsReleaseYear"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:isIndicator="true"
+                        android:numStars="10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDetailsReleaseYear" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </layout>

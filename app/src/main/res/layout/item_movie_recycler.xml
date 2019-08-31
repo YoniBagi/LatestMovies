@@ -64,6 +64,15 @@
                 android:layout_marginTop="10dp"
                 tools:text="tvReleaseYear"
                 android:text="@{movie.releaseDate}"/>
+            <ImageView
+                android:id="@+id/ivFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_heart_icon"
+                app:layout_constraintTop_toBottomOf="@+id/tvReleaseYear"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="15dp"
+                android:onClick="@{_ -> movieListAdapter.onClickFav(ivFav, movie)}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

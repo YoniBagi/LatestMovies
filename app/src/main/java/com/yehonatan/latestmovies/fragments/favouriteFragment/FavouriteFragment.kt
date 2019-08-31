@@ -6,19 +6,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.yehonatan.latestmovies.R
+import com.yehonatan.latestmovies.Util.Consts
+import com.yehonatan.latestmovies.adapters.FavouriteAdapter
+import com.yehonatan.latestmovies.dataModel.Movie
+import kotlinx.android.synthetic.main.fragment_favourite.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class FavouriteFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favourite, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setAdapter()
+    }
+
+    private fun setAdapter() {
+        val list = arguments?.getParcelableArrayList<Movie>(Consts.KEY_BUNDLE_FAV_LIST)
+        list.let {
+            favStaggeredGridView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            favStaggeredGridView.adapter = FavouriteAdapter(it as ArrayList<Movie>)
+        }
     }
 
 

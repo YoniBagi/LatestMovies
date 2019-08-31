@@ -18,6 +18,7 @@ import com.yehonatan.latestmovies.databinding.FragmentMoviesListBinding
 class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack {
 
     private lateinit var moviesList: ArrayList<Movie>
+    private var favouriteList: ArrayList<Movie> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +44,27 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
         return MovieListAdapter(moviesList, this)
     }
 
+    fun onClickFav() {
+        val bundle = Bundle()
+        bundle.putParcelableArrayList(Consts.KEY_BUNDLE_FAV_LIST, favouriteList)
+        NavHostFragment.findNavController(this)
+            .navigate(R.id.action_moviesListFragment_to_favouriteFragment, bundle)
+    }
+
     override fun onClickItem(movie: Movie) {
         val bundle = Bundle()
         bundle.putParcelable(Consts.KEY_BUNDLE_MOVIE, movie)
-        NavHostFragment.findNavController(this).navigate(R.id.action_moviesListFragment_to_detailsMovieFragment, bundle)
+        NavHostFragment.findNavController(this)
+            .navigate(R.id.action_moviesListFragment_to_detailsMovieFragment, bundle)
+    }
+
+    override fun onClickFav(movie: Movie, isSelected: Boolean) {
+        if (isSelected) favouriteList.add(movie)
+        else favouriteList.remove(movie)
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
 }
