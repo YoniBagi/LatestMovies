@@ -8,4 +8,5 @@
     <string name="details_movie">Details Movie</string>
     <string name="movies_app">Movies App</string>
     <string name="favourite">Favourite</string>
+    <string name="add_favorites">Add Favorites</string>
 </resources>

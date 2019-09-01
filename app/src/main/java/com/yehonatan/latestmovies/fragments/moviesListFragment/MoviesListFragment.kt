@@ -31,11 +31,6 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
     }
 
     private fun checkFavouriteListFromDB() {
-        moviesListFragmentViewModel.favouriteList.observe(this, Observer {
-            favouriteList = ArrayList(it)
-            checkSelectedMovie()
-            setAdapter()
-        })
         moviesListFragmentViewModel.getFavouriteList(context)
     }
 
@@ -52,6 +47,11 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
     private fun setViewModel() {
         moviesListFragmentViewModel =
             ViewModelProviders.of(this).get(MoviesListFragmentViewModel::class.java)
+        moviesListFragmentViewModel.favouriteList.observe(this, Observer {
+            favouriteList = ArrayList(it)
+            checkSelectedMovie()
+            setAdapter()
+        })
     }
 
     override fun onCreateView(

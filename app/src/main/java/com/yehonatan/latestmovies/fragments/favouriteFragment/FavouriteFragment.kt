@@ -29,10 +29,16 @@ class FavouriteFragment : Fragment() {
 
     private fun setAdapter() {
         val list = arguments?.getParcelableArrayList<Movie>(Consts.KEY_BUNDLE_FAV_LIST)
-        list.let {
-            favStaggeredGridView.layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            favStaggeredGridView.adapter = FavouriteAdapter(it as ArrayList<Movie>)
+        list?.let {
+            if (it.isEmpty()) {
+                tvAddFav.visibility = View.VISIBLE
+            } else {
+                tvAddFav.visibility = View.GONE
+                val manager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                manager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+                favStaggeredGridView.layoutManager = manager
+                favStaggeredGridView.adapter = FavouriteAdapter(it as ArrayList<Movie>)
+            }
         }
     }
 }
