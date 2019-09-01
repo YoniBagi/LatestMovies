@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import com.yehonatan.latestmovies.converters.ConverterListInt
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 @Entity(tableName = "movie_table")
@@ -16,9 +17,6 @@ data class Movie(
     var adult: Boolean,
     @SerializedName("backdrop_path")
     var backdropPath: String,
-    /*@TypeConverters(ConverterListInt::class)
-    @SerializedName("genre_ids")
-    var genreIds: List<Int>,*/
     @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     var id: Int,
@@ -43,4 +41,8 @@ data class Movie(
     @SerializedName("vote_count")
     var voteCount: Int,
     var selected: Boolean
-) : Parcelable
+) : Parcelable{
+    override fun equals(other: Any?): Boolean {
+        return (other is Movie) && id == other.id
+    }
+}
