@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,6 +29,16 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
         val list = arguments?.getParcelableArrayList<Movie>(Consts.KEY_BUNDLE_LIST_MOVIES)
         list.let { moviesList = it as ArrayList<Movie> }
         setViewModel()
+        setOnBack()
+    }
+
+    private fun setOnBack() {
+        val onBackCallBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackCallBack)
     }
 
     private fun checkFavouriteListFromDB() {
@@ -35,8 +46,8 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
     }
 
     private fun checkSelectedMovie() {
-        for (favMovie: Movie in favouriteList) {
-            for (movie: Movie in moviesList) {
+        for (favMovie in favouriteList) {
+            for (movie in moviesList) {
                 if (favMovie.id == movie.id) {
                     movie.selected = favMovie.selected
                 }
@@ -47,10 +58,9 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
     private fun setViewModel() {
         moviesListFragmentViewModel =
             ViewModelProviders.of(this).get(MoviesListFragmentViewModel::class.java)
-        moviesListFragmentViewModel.favouriteList.observe(this, Observer {
+        moviesListFragmentViewModel.getFavouriteList().observe(this, Observer {
             favouriteList = ArrayList(it)
             checkSelectedMovie()
-            setAdapter()
         })
     }
 
@@ -67,6 +77,7 @@ class MoviesListFragment : Fragment(), MovieListAdapter.MovieListAdapterCallBack
         binding.movieListFragment = this
         mBinding = binding
         checkFavouriteListFromDB()
+        setAdapter()
         return binding.root
     }
 

@@ -1,13 +1,16 @@
 package com.yehonatan.latestmovies.fragments.moviesListFragment
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.yehonatan.latestmovies.dataModel.Movie
+import kotlinx.coroutines.launch
 
 class MoviesListFragmentViewModel: ViewModel() {
     var favouriteList = MutableLiveData<List<Movie>>()
+
+    fun getFavouriteList():LiveData<List<Movie>>{
+        return favouriteList
+    }
     private val observer = Observer<List<Movie>>{
         favouriteList.postValue(it)
     }

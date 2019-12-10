@@ -14,7 +14,6 @@
             android:id="@+id/action_splashFragment_to_movieListFragment"
             app:destination="@id/moviesListFragment"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/nav_graph"
             app:enterAnim="@anim/blink"
             app:popEnterAnim="@anim/blink"/>
     </fragment>

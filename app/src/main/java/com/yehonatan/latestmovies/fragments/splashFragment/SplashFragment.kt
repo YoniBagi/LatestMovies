@@ -28,7 +28,7 @@ class SplashFragment : Fragment() {
     private fun setViewModel() {
         splashFragmentViewModel =
             ViewModelProviders.of(this).get(SplashFragmentViewModel::class.java)
-        splashFragmentViewModel.moviesData.observe(this, Observer { fetchMoviesSuccess(it) })
+        splashFragmentViewModel.getMoviesData().observe(this, Observer { fetchMoviesSuccess(it) })
     }
 
     private fun fetchMoviesSuccess(moviesData: MoviesData?) {
